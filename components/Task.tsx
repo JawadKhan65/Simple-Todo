@@ -47,8 +47,15 @@ const Task = () => {
         })
     }
     useEffect(() => {
-        localStorage.setItem("list", JSON.stringify(task))
-    }, [task])
+        if (typeof window !== 'undefined') {
+            // Access localStorage here
+            const storedData = localStorage.getItem('list');
+            if (storedData) {
+                setTask(JSON.parse(storedData));
+            }
+        }
+    }, []);
+
 
 
 
